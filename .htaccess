@@ -1,0 +1,21 @@
+AddType application/xml .xml
+AddType application/x-httpd-php .html
+
+ErrorDocument 404 /404.php
+
+RewriteEngine On
+
+RewriteRule ^blog/([0-9]+)/?$ blog.php?blogid=$1 [NC,L]
+
+RewriteRule ^blog/([0-9]+)/page/([0-9]+)/?$ blog.php?blogid=$1&page=$2 [L,QSA]
+
+RewriteRule ^blog/([0-9]+)/post/([0-9]+)/?$ view.php?blogid=$1&postid=$2 [L,QSA]
+
+RewriteRule ^index/([0-9]+)/?$ site.php?blogid=$1 [NC,L]
+RewriteRule ^index/([0-9]+)/page/([0-9]+)/?$ site.php?blogid=$1&page=$2 [L,QSA]
+
+RewriteRule ^sitemap/([0-9]+)/?$ sitemap.php?blogid=$1 [NC,L]
+RewriteRule ^sitemap/([0-9]+)/page/([0-9]+)/?$ sitemap.php?blogid=$1&page=$2 [L,QSA]
+
+
+RewriteRule ^feed/([0-9]+)/?$ rss.php?blogid=$1 [NC,L]
